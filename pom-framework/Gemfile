@@ -1,0 +1,6 @@
+source 'http://rubygems.org'
+
+gem 'cucumber'
+gem 'watir', '~> 6.0'
+gem "rspec", "3.6.0"
+gem "page-object", "~> 2.2"

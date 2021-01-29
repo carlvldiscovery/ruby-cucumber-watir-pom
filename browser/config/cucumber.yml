@@ -1,0 +1,2 @@
+# Unless you specify something diferent on the command liine, it'll use these options.
+default: features --tag "not @wip" --tag "not @manual"

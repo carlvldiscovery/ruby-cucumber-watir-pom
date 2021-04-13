@@ -23,3 +23,30 @@ Then(/^I see the test show in the search results$/) do
     page.wait_until(5) { page.result_card_headings.include? TEST_SHOW }
   end
 end
+
+When(/^I click on login CTA$/) do
+  on(AppPage) do |page|
+    page.open_login
+  end
+end
+
+Then(/^I am logged in$/) do
+  on(AppPage) do |page|
+     page.wait_until(5) { page.open_myaccount_element.present? } 
+    # page.wait_until(5) { page.favourites_element.present? }
+  end
+end  
+
+Then(/^I fail to log in$/) do
+  on(AppPage) do |page|
+     page.wait_until(5) { page.warning_banner_element.present? } 
+    # page.wait_until(5) { page.favourites_element.present? }
+  end
+end  
+
+
+When(/^I click on my account$/) do
+  on(AppPage) do |page|
+    page.open_myaccount
+  end
+end

@@ -1,1 +1,6 @@
 TEST_SHOW = 'Dual Survival'
+EMAIL = 'prodtest1@gmail.com'
+PASSWORD = 'testDplay1'
+WRONG_PASSWORD = 'WRONG_PASSWORD'
+FIRST_NAME = 'Carl'
+BIRTH_DAY = '2'

@@ -14,6 +14,8 @@ class AppPage
   link(:open_register, href: /^myaccount\/products?/)
   #notification warning
   div(:warning_banner, class: 'notification__message')
+  #menu selectors
+  divs(:menu_items,css: 'div[class^="nav-"] div[class^="navItem"]')
 
 end
 

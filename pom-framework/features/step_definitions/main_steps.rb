@@ -50,3 +50,15 @@ When(/^I click on my account$/) do
     page.open_myaccount
   end
 end
+
+Then (/^the following menu options are present:$/) do |options|
+  on(AppPage) do |page|
+    options_array = options.raw.flatten
+    menu_option_texts = page.menu_items_elements.collect(&:text)
+    diff1= menu_option_texts - options_array
+    diff2= options_array - menu_option_texts
+    diff3= diff1 + diff2
+    expect(diff3).to eq([])
+
+  end
+end

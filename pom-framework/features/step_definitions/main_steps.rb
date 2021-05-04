@@ -1,5 +1,7 @@
-require './config/urls'
-require './config/test_content'
+require "./config/urls"
+require "./config/test_content"
+
+require "../support/utilities"
 
 Given(/^I am on the homepage$/) do
   on(AppPage) do |page|
@@ -32,18 +34,17 @@ end
 
 Then(/^I am logged in$/) do
   on(AppPage) do |page|
-     page.wait_until(5) { page.open_myaccount_element.present? } 
+    page.wait_until(5) { page.open_myaccount_element.present? }
     # page.wait_until(5) { page.favourites_element.present? }
   end
-end  
+end
 
 Then(/^I fail to log in$/) do
   on(AppPage) do |page|
-     page.wait_until(5) { page.warning_banner_element.present? } 
+    page.wait_until(5) { page.warning_banner_element.present? }
     # page.wait_until(5) { page.favourites_element.present? }
   end
-end  
-
+end
 
 When(/^I click on my account$/) do
   on(AppPage) do |page|
@@ -53,12 +54,19 @@ end
 
 Then (/^the following menu options are present:$/) do |options|
   on(AppPage) do |page|
-    options_array = options.raw.flatten
-    menu_option_texts = page.menu_items_elements.collect(&:text)
-    diff1= menu_option_texts - options_array
-    diff2= options_array - menu_option_texts
-    diff3= diff1 + diff2
-    expect(diff3).to eq([])
+    # expected_texts = options.raw.flatten
+    # menu_option_texts = page.menu_items_elements.collect(&:text)
 
+    expected_texts = Support::ListsAndArrays::convertListToArray(options)
+    menu_option_texts = Support::ListsAndArrays::getElementTexts(page.menu_items_elements)
+
+    # TODO:  this vvvvv
+    textDiffArray = Support::ListsAndArrays::getArrayDiff(expected_texts, menu_option_texts)
+    # diff1 = menu_option_texts - expected_texts
+    # diff2 = expected_texts - menu_option_texts
+    # diff3 = diff1 + diff2
+
+    # expect(diff3).to eq([])
+    expect(textDiffArray).to eq([])
   end
 end

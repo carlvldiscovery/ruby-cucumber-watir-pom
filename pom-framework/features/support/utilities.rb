@@ -1,4 +1,16 @@
 module Support
+  module ListsAndArrays
+    class << self
+      def convertListToArray(list)
+        return list.raw.flatten
+      end
+
+      def getElementTexts(elementArray)
+        return elementArray.collect(&:text)
+      end
+    end
+  end
+
   module Eventually
     class << self
       def eventually(options = {})

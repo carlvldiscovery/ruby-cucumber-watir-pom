@@ -8,8 +8,22 @@ module Support
       def getElementTexts(elementArray)
         return elementArray.collect(&:text)
       end
+    
+      def getArrayDiff(*arrays)
+        arrayDiff = []
+        for (array in arrays)
+         diff1 = arrayDiff - array
+         diff2 = array - arrayDiff
+         arrayDiff = diff1 + diff2
+        end    
+       
+        return arrayDiff
+      end
+      
     end
   end
+
+  
 
   module Eventually
     class << self

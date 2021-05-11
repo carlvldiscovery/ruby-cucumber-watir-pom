@@ -1,7 +1,6 @@
 require "./config/urls"
 require "./config/test_content"
-
-require "../support/utilities"
+require "./features/support/utilities"
 
 Given(/^I am on the homepage$/) do
   on(AppPage) do |page|
@@ -54,19 +53,11 @@ end
 
 Then (/^the following menu options are present:$/) do |options|
   on(AppPage) do |page|
-    # expected_texts = options.raw.flatten
-    # menu_option_texts = page.menu_items_elements.collect(&:text)
 
     expected_texts = Support::ListsAndArrays::convertListToArray(options)
     menu_option_texts = Support::ListsAndArrays::getElementTexts(page.menu_items_elements)
-
-    # TODO:  this vvvvv
     textDiffArray = Support::ListsAndArrays::getArrayDiff(expected_texts, menu_option_texts)
-    # diff1 = menu_option_texts - expected_texts
-    # diff2 = expected_texts - menu_option_texts
-    # diff3 = diff1 + diff2
-
-    # expect(diff3).to eq([])
+  
     expect(textDiffArray).to eq([])
   end
 end

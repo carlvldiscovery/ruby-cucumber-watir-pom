@@ -11,7 +11,7 @@ module Support
     
       def getArrayDiff(*arrays)
         arrayDiff = []
-        for (array in arrays)
+        arrays.each do |array|
          diff1 = arrayDiff - array
          diff2 = array - arrayDiff
          arrayDiff = diff1 + diff2

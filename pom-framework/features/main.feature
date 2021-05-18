@@ -11,7 +11,7 @@ Feature: Main tests
     When I search for a test show
     Then I see the test show in the search results
 
-  @carl
+ 
   Scenario: Verify the main menu options are correct
     Then the following menu options are present:
       | Programs   |
@@ -20,3 +20,7 @@ Feature: Main tests
       | Sports     |
       | Tokyo 2021 |
       | Game       |
+
+ @carl
+  Scenario: Verify the footer options are correct
+    Then the expected footer items are present

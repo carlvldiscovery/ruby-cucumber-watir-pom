@@ -1,6 +1,9 @@
 require "./config/urls"
 require "./config/test_content"
 require "./features/support/utilities"
+require 'json'
+
+
 
 Given(/^I am on the homepage$/) do
   on(AppPage) do |page|
@@ -59,5 +62,19 @@ Then (/^the following menu options are present:$/) do |options|
     textDiffArray = Support::ListsAndArrays::getArrayDiff(expected_texts, menu_option_texts)
   
     expect(textDiffArray).to eq([])
+  end
+end
+
+Then (/^the expected footer items are present$/) do 
+  on(AppPage) do |page|
+    footer_options = Support::ListsAndArrays::getElementTexts(page.menu_items_elements)
+    file = File.read('./config/footer_options.json')
+    expected_options = JSON.parse(file)
+
+    expected_options.each do |option|
+      text = option["text"]
+      href = option["href"]
+      footer_options.each footer_options.detect {|item| item == 3} # returns '3'
+    end
   end
 end

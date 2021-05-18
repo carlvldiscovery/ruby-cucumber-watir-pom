@@ -16,6 +16,7 @@ class AppPage
   div(:warning_banner, class: 'notification__message')
   #menu selectors
   divs(:menu_items,css: 'div[class^="nav-"] div[class^="navItem"]')
-
+  #footer selectors
+  divs(:footer_items,css: 'footer [class *= "links-"] a')
 end
 

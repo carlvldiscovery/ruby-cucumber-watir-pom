@@ -17,6 +17,6 @@ class AppPage
   #menu selectors
   divs(:menu_items,css: 'div[class^="nav-"] div[class^="navItem"]')
   #footer selectors
-  divs(:footer_items,css: 'footer [class *= "links-"] a')
+  links(:footer_items,css: 'footer [class *= "links-"] a')
 end
 

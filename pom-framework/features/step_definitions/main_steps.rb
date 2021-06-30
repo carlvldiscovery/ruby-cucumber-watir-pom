@@ -67,14 +67,18 @@ end
 
 Then (/^the expected footer items are present$/) do 
   on(AppPage) do |page|
-    footer_options = Support::ListsAndArrays::getElementTexts(page.menu_items_elements)
+    footer_options = Support::ListsAndArrays::getElementTexts(page.footer_items_elements)
+    puts footer_options
     file = File.read('./config/footer_options.json')
     expected_options = JSON.parse(file)
 
     expected_options.each do |option|
       text = option["text"]
       href = option["href"]
-      footer_options.each footer_options.detect {|item| item == 3} # returns '3'
+      expect(footer_options.detect {|item| item == text}).to eq(text)
+      # expect(footer_options.detect {|item| item ==text}).to be_truthy()
+      # expect(footer_options.detect {|item| item == text}).not_to be(nil)
+
     end
   end
 end
